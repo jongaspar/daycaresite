@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery — {{ site_settings.site_name }}{% endblock %}
+
+{% block content %}
+<section class="bg-garden-700 py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center text-white">
+        <h1 class="font-heading text-4xl font-bold mb-3">Photo Gallery</h1>
+        <p class="text-garden-200 text-lg">A glimpse into life at our daycare</p>
+    </div>
+</section>
+
+<section class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+        <!-- Category Filters -->
+        {% if images %}
+        <div class="flex flex-wrap justify-center gap-2 mb-10">
+            <button class="gallery-filter px-4 py-2 rounded-full text-sm font-semibold bg-garden-600 text-white transition"
+                    data-filter="all">All</button>
+            {% for value, label in categories %}
+            <button class="gallery-filter px-4 py-2 rounded-full text-sm font-semibold bg-white text-gray-700 hover:bg-garden-100 transition"
+                    data-filter="{{ value }}">{{ label }}</button>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Photo Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="gallery-grid">
+            {% for img in images %}
+            <div class="gallery-item rounded-xl overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer"
+                 data-category="{{ img.category }}"
+                 onclick="openLightbox('{{ img.image.url }}', '{{ img.caption|escapejs }}')">
+                <img src="{{ img.image.url }}" alt="{{ img.alt_text }}"
+                     class="w-full h-64 object-cover hover:scale-105 transition duration-300"
+                     loading="lazy">
+                {% if img.caption %}
+                <div class="p-3 bg-white">
+                    <p class="text-sm text-gray-600">{{ img.caption }}</p>
+                </div>
+                {% endif %}
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-12">
+                <p class="text-4xl mb-4">📸</p>
+                <p class="text-gray-500 text-lg">Photos coming soon! Check back later.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4" onclick="closeLightbox()">
+    <button class="absolute top-4 right-4 text-white text-3xl hover:text-gray-300" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl" onclick="event.stopPropagation()">
+    <p id="lightbox-caption" class="absolute bottom-6 left-0 right-0 text-center text-white text-lg"></p>
+</div>
+{% endblock %}

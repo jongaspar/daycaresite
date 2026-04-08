@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Rates & Fees — {{ site_settings.site_name }}{% endblock %}
+
+{% block content %}
+<section class="bg-garden-700 py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center text-white">
+        <h1 class="font-heading text-4xl font-bold mb-3">Rates & Fees</h1>
+        <p class="text-garden-200 text-lg">Transparent pricing for quality childcare</p>
+    </div>
+</section>
+
+<section class="py-16">
+    <div class="max-w-4xl mx-auto px-4">
+        {% if fees %}
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <table class="w-full">
+                <thead>
+                    <tr class="bg-garden-50 border-b border-garden-100">
+                        <th class="text-left px-6 py-4 font-heading font-bold text-garden-800">Program</th>
+                        <th class="text-left px-6 py-4 font-heading font-bold text-garden-800 hidden sm:table-cell">Age Group</th>
+                        <th class="text-right px-6 py-4 font-heading font-bold text-garden-800">Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fee in fees %}
+                    <tr class="border-b border-gray-100 hover:bg-garden-50/50 transition">
+                        <td class="px-6 py-4">
+                            <p class="font-semibold text-gray-800">{{ fee.title }}</p>
+                            {% if fee.description %}
+                            <p class="text-sm text-gray-500 mt-1">{{ fee.description }}</p>
+                            {% endif %}
+                            {% if fee.age_group %}
+                            <p class="text-xs text-garden-600 mt-1 sm:hidden">{{ fee.age_group }}</p>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 text-gray-600 hidden sm:table-cell">{{ fee.age_group|default:"—" }}</td>
+                        <td class="px-6 py-4 text-right">
+                            <span class="font-bold text-garden-700 text-lg">${{ fee.amount }}</span>
+                            <span class="text-sm text-gray-500">/{{ fee.get_period_display|lower }}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-8 bg-sunshine-50 rounded-xl p-6 border border-sunshine-200">
+            <h3 class="font-heading font-bold text-gray-800 mb-2">Questions about pricing?</h3>
+            <p class="text-gray-600 text-sm mb-3">
+                We're happy to discuss our rates and payment options. Subsidies may be available for qualifying families.
+            </p>
+            <a href="{% url 'contact' %}" class="text-garden-600 font-semibold hover:text-garden-700 transition">Contact us for details →</a>
+        </div>
+        {% else %}
+        <div class="text-center py-12">
+            <p class="text-4xl mb-4">💰</p>
+            <p class="text-gray-500 text-lg mb-4">Rate information coming soon!</p>
+            <a href="{% url 'contact' %}" class="text-garden-600 font-semibold hover:text-garden-700">Contact us for pricing →</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

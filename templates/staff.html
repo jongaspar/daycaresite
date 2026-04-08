@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Our Team — {{ site_settings.site_name }}{% endblock %}
+
+{% block content %}
+<section class="bg-garden-700 py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center text-white">
+        <h1 class="font-heading text-4xl font-bold mb-3">Our Team</h1>
+        <p class="text-garden-200 text-lg">Caring educators dedicated to your child's growth</p>
+    </div>
+</section>
+
+<section class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for member in members %}
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden text-center hover:shadow-md transition">
+                {% if member.photo %}
+                <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="w-full h-64 object-cover">
+                {% else %}
+                <div class="w-full h-64 bg-garden-100 flex items-center justify-center">
+                    <span class="text-6xl">👤</span>
+                </div>
+                {% endif %}
+                <div class="p-6">
+                    <h3 class="font-heading text-xl font-bold text-garden-800">{{ member.name }}</h3>
+                    <p class="text-garden-600 font-semibold text-sm mb-3">{{ member.role }}</p>
+                    <p class="text-gray-600 text-sm">{{ member.bio }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-12">
+                <p class="text-4xl mb-4">👩‍🏫</p>
+                <p class="text-gray-500 text-lg">Meet our wonderful team — coming soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

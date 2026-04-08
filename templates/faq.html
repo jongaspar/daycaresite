@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ — {{ site_settings.site_name }}{% endblock %}
+
+{% block content %}
+<section class="bg-garden-700 py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center text-white">
+        <h1 class="font-heading text-4xl font-bold mb-3">Frequently Asked Questions</h1>
+        <p class="text-garden-200 text-lg">Answers to common questions about our daycare</p>
+    </div>
+</section>
+
+<section class="py-16">
+    <div class="max-w-3xl mx-auto px-4">
+        <div class="space-y-4">
+            {% for faq in faqs %}
+            <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <button class="faq-toggle w-full px-6 py-4 text-left flex justify-between items-center hover:bg-garden-50 transition"
+                        onclick="toggleFaq(this)">
+                    <span class="font-heading font-bold text-garden-800 pr-4">{{ faq.question }}</span>
+                    <svg class="faq-arrow w-5 h-5 text-garden-600 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="faq-answer hidden px-6 pb-4">
+                    <p class="text-gray-600 leading-relaxed">{{ faq.answer|linebreaks }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center py-12">
+                <p class="text-4xl mb-4">❓</p>
+                <p class="text-gray-500 text-lg mb-4">FAQ coming soon!</p>
+                <a href="{% url 'contact' %}" class="text-garden-600 font-semibold hover:text-garden-700">Have a question? Contact us →</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if faqs %}
+        <div class="mt-12 text-center">
+            <p class="text-gray-600 mb-3">Didn't find your answer?</p>
+            <a href="{% url 'contact' %}" class="inline-block px-6 py-3 bg-garden-600 text-white font-semibold rounded-full hover:bg-garden-700 transition">Contact Us</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

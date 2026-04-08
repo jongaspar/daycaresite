@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Programs — {{ site_settings.site_name }}{% endblock %}
+
+{% block content %}
+<section class="bg-garden-700 py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center text-white">
+        <h1 class="font-heading text-4xl font-bold mb-3">Our Programs</h1>
+        <p class="text-garden-200 text-lg">Quality care for children aged {{ site_settings.ages_served }}</p>
+    </div>
+</section>
+
+<section class="py-16">
+    <div class="max-w-5xl mx-auto px-4">
+        {% for program in programs %}
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-8 {% if forloop.counter|divisibleby:2 %}md:flex-row-reverse{% endif %} md:flex">
+            {% if program.image %}
+            <div class="md:w-2/5 flex-shrink-0">
+                <img src="{{ program.image.url }}" alt="{{ program.title }}" class="w-full h-64 md:h-full object-cover">
+            </div>
+            {% endif %}
+            <div class="p-8 flex-1">
+                <h2 class="font-heading text-2xl font-bold text-garden-800 mb-2">{{ program.title }}</h2>
+                {% if program.age_range %}
+                <span class="inline-block bg-garden-100 text-garden-700 px-3 py-1 rounded-full text-sm font-semibold mb-4">
+                    Ages: {{ program.age_range }}
+                </span>
+                {% endif %}
+                <div class="text-gray-600 leading-relaxed">{{ program.description|linebreaks }}</div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-center py-12">
+            <p class="text-4xl mb-4">📋</p>
+            <p class="text-gray-500 text-lg">Program details coming soon! Contact us to learn more.</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

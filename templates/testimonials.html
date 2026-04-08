@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Testimonials — {{ site_settings.site_name }}{% endblock %}
+
+{% block content %}
+<section class="bg-garden-700 py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center text-white">
+        <h1 class="font-heading text-4xl font-bold mb-3">Testimonials</h1>
+        <p class="text-garden-200 text-lg">What parents are saying about us</p>
+    </div>
+</section>
+
+<section class="py-16">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="space-y-6">
+            {% for t in testimonials %}
+            <div class="bg-white rounded-2xl p-8 shadow-sm">
+                <p class="text-gray-600 text-lg italic leading-relaxed mb-4">"{{ t.quote }}"</p>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-garden-200 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-garden-700 font-bold">{{ t.parent_name|first }}</span>
+                    </div>
+                    <div>
+                        <p class="font-heading font-bold text-garden-800">{{ t.parent_name }}</p>
+                        {% if t.child_age_at_time %}
+                        <p class="text-sm text-gray-500">Child age: {{ t.child_age_at_time }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center py-12">
+                <p class="text-4xl mb-4">💬</p>
+                <p class="text-gray-500 text-lg">Testimonials coming soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
