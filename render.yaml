@@ -29,4 +29,4 @@ services:
       - key: DJANGO_SUPERUSER_EMAIL
         value: "jongaspar@gmail.com"
       - key: DJANGO_SUPERUSER_PASSWORD
-        value: "8$#f!^pCwk76j&TaVc"
+        value: "DayCare2026SecureAdmin"
