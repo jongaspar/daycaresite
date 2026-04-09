@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sent — The Garden of Children</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        garden: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        sunshine: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        },
+                        sky: {
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Nunito', 'sans-serif'],
+                        body: ['Open Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body class="font-body bg-amber-50/30 text-gray-800 min-h-screen flex flex-col">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-2">
+                <span class="text-3xl">🌱</span>
+                <span class="font-heading font-bold text-garden-700 text-lg hidden sm:inline">The Garden of Children</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden lg:flex items-center space-x-1">
+                <a href="/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-garden-600 hover:bg-garden-50 transition">Home</a>
+                <a href="/about/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-garden-600 hover:bg-garden-50 transition">About</a>
+                <a href="/programs/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-garden-600 hover:bg-garden-50 transition">Programs</a>
+                <a href="/schedule/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-garden-600 hover:bg-garden-50 transition">Schedule</a>
+                <a href="/staff/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-garden-600 hover:bg-garden-50 transition">Our Team</a>
+                <a href="/gallery/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-garden-600 hover:bg-garden-50 transition">Gallery</a>
+                <a href="/rates/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-garden-600 hover:bg-garden-50 transition">Rates</a>
+                <a href="/testimonials/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-garden-600 hover:bg-garden-50 transition">Testimonials</a>
+                <a href="/faq/" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-garden-600 hover:bg-garden-50 transition">FAQ</a>
+                <a href="/contact/" class="ml-2 px-4 py-2 bg-garden-600 text-white rounded-full text-sm font-semibold hover:bg-garden-700 transition">Enroll Now</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-md text-gray-700 hover:bg-garden-50">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="lg:hidden hidden bg-white border-t">
+        <div class="px-4 py-3 space-y-1">
+            <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-garden-50">Home</a>
+            <a href="/about/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-garden-50">About</a>
+            <a href="/programs/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-garden-50">Programs</a>
+            <a href="/schedule/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-garden-50">Schedule</a>
+            <a href="/staff/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-garden-50">Our Team</a>
+            <a href="/gallery/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-garden-50">Gallery</a>
+            <a href="/rates/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-garden-50">Rates</a>
+            <a href="/testimonials/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-garden-50">Testimonials</a>
+            <a href="/faq/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-garden-50">FAQ</a>
+            <a href="/contact/" class="block px-3 py-2 mt-2 bg-garden-600 text-white rounded-lg text-center font-semibold">Enroll Now</a>
+        </div>
+    </div>
+</nav>
+
+
+    <main class="flex-1">
+        
+<section class="py-24">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+        <div class="bg-white rounded-2xl p-12 shadow-sm">
+            <p class="text-6xl mb-6">🌻</p>
+            <h1 class="font-heading text-3xl font-bold text-garden-800 mb-4">Thank You!</h1>
+            <p class="text-gray-600 text-lg mb-8">
+                Your message has been received. We'll get back to you as soon as possible,
+                usually within one business day.
+            </p>
+            <a href="/"
+               class="inline-block px-6 py-3 bg-garden-600 text-white font-semibold rounded-full hover:bg-garden-700 transition">
+                Back to Home
+            </a>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer class="bg-garden-800 text-white mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- About -->
+            <div>
+                <h3 class="font-heading font-bold text-xl mb-4">🌱 The Garden of Children</h3>
+                <p class="text-garden-200 text-sm leading-relaxed">
+                    A nurturing daycare in Vancouver, BC for children aged 30 months to kindergarten.
+                    Where little ones grow, play, and discover the world around them.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="font-heading font-bold text-xl mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/about/" class="text-garden-200 hover:text-white transition">About Us</a></li>
+                    <li><a href="/programs/" class="text-garden-200 hover:text-white transition">Programs</a></li>
+                    <li><a href="/rates/" class="text-garden-200 hover:text-white transition">Rates & Fees</a></li>
+                    <li><a href="/gallery/" class="text-garden-200 hover:text-white transition">Gallery</a></li>
+                    <li><a href="/contact/" class="text-garden-200 hover:text-white transition">Contact / Enroll</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h3 class="font-heading font-bold text-xl mb-4">Contact Us</h3>
+                <ul class="space-y-2 text-sm text-garden-200">
+                    
+                    
+                    
+                    <li>🕐 Mon–Fri: 7:00 AM – 6:00 PM</li>
+                    
+                </ul>
+                <div class="flex space-x-4 mt-4">
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-garden-700 mt-8 pt-8 text-center text-garden-300 text-sm">
+            <p>&copy; The Garden of Children · Vancouver, BC · Ages 30 months to kindergarten</p>
+        </div>
+    </div>
+</footer>
+
+
+    <script src="/static/js/main.js"></script>
+    
+</body>
+</html>
