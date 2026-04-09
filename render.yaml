@@ -1,0 +1,26 @@
+databases:
+  - name: daycaresite-db
+    databaseName: daycaresite
+    user: daycaresite
+    plan: free
+
+services:
+  - type: web
+    name: daycaresite
+    runtime: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: daycaresite-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: PYTHON_VERSION
+        value: "3.12.0"
