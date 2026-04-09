@@ -24,3 +24,9 @@ services:
         value: ".onrender.com"
       - key: PYTHON_VERSION
         value: "3.12.0"
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: "admin"
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: "jongaspar@gmail.com"
+      - key: DJANGO_SUPERUSER_PASSWORD
+        value: "8$#f!^pCwk76j&TaVc"
